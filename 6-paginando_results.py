@@ -1,5 +1,6 @@
 import requests
 from collections import Counter
+import pandas
 
 # 1 - Autenticção GitHub
 
@@ -49,3 +50,13 @@ print(lang_repos[:10])
 
 # 7 - Contando as ocorrências das linguagens
 print(Counter(lang_repos))
+
+# 8 - Criando Dataframe
+dados_mt = pandas.DataFrame()
+dados_mt['repo_name'] = name_repos
+dados_mt['repo_lang'] = lang_repos
+print(dados_mt)
+
+# 9 - Exportando para CSV
+dados_mt.to_csv('mt.csv')
+
