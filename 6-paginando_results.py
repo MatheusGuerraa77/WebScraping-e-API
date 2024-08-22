@@ -1,10 +1,11 @@
 import requests
+from collections import Counter
 
 # 1 - Autenticção GitHub
 
 acess_token = ' ' #Token gerado pelo GIthHub
 headers = {
-    'Authorization': 'Bearer' +acess_token,
+    'Authorization': 'Bearer ' +acess_token,
     'X-GitHub-Api-Version': '2022-11-28'
 }
 
@@ -27,3 +28,24 @@ for page_num in range (1, 3):
 # 4 - Apresentar os Dados
 print(len(repo_list))
 print(repo_list[0][2]['name'])
+
+# 5 - pegando o Nome de cada repositório
+name_repos = []
+for page in repo_list:
+    for repo in page:
+        # print(repo['name'])
+        name_repos.append(repo['name'])
+print(len(name_repos))
+print(name_repos[:10])
+
+# 6 - Pegando a linguagem de cada repositório
+lang_repos = []
+for page in repo_list:
+    for repo in page:
+        # print(repo['language'])
+        lang_repos.append(repo['language'])
+print(len(lang_repos))
+print(lang_repos[:10])
+
+# 7 - Contando as ocorrências das linguagens
+print(Counter(lang_repos))
